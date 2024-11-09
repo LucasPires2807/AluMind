@@ -16,4 +16,11 @@ public class FeedbackModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     UUID id;
+    String text;
+    String code;
+
+    @Buider
+
+
+
 }
