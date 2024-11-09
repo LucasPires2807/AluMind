@@ -1,0 +1,24 @@
+version: "3.5"
+services:
+  db:
+    container_name: alumind-db
+    image: postgres
+    environment:
+      POSTGRES_DB: alumind_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5431:5432"
+    #apenas reinicia caso o conatiner não seja interropido/parado
+    restart: unless-stopped
+  web:
+    container_name: alumind
+    image: alumind_api
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://alumind-db:5432/alumind_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    depends_on:
+      - db
+    ports:
+      - 8181:8080
