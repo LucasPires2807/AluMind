@@ -1,4 +1,4 @@
-FROM openjdk:21-alpine
+FROM openjdk:21
 COPY "target/*jar" app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8080

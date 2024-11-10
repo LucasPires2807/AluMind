@@ -9,11 +9,10 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5431:5432"
-    #apenas reinicia caso o conatiner não seja interropido/parado
     restart: unless-stopped
-  web:
+  api:
     container_name: alumind
-    image: alumind_api
+    build: ./
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://alumind-db:5432/alumind_db
       - SPRING_DATASOURCE_USERNAME=postgres

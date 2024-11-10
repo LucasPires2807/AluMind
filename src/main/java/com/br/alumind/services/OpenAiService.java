@@ -1,8 +1,11 @@
 package com.br.alumind.services;
 
-import com.br.alumind.utils.AnalysisResult;
 import com.br.alumind.models.FeaturesModel;
+import com.br.alumind.models.FeedbackModel;
+import com.br.alumind.models.Sentiment;
 import com.br.alumind.repositories.FeatureRepository;
+import com.br.alumind.repositories.FeedbackRepository;
+import com.br.alumind.utils.AnalysisResult;
 import com.google.gson.Gson;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.openai.OpenAiChatModel;
@@ -10,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 @Service
 public class OpenAiService {
@@ -22,6 +27,8 @@ public class OpenAiService {
     private OpenAiChatModel chatClient;
     @Autowired
     private FeatureRepository featureRepository;
+    @Autowired
+    private FeedbackRepository feedbackRepository;
 
     public String avaiableFeedback(String prompt){
         PromptTemplate promptTemplate = new PromptTemplate( "Esse feedback é positivo? responda com sim ou não" + prompt);
@@ -83,5 +90,20 @@ public class OpenAiService {
         featuresModel.setReason("O usuário sugeriu " + reason);
         featuresModel.setFeedbackId(feedback_id);
         return featureRepository.save(featuresModel);
+    }
+
+    public String generateResponseFeedback(UUID id){
+        String response = null;
+        Optional<FeedbackModel> feedbackModel = feedbackRepository.findById(id);
+        if(feedbackModel.isPresent()){
+            String prompt = "Gere uma resposta resumida e objetiva para esse feedback: %s Adicione a seguinte fase: "
+                    .formatted(feedbackModel.get().getText());
+            String increment = Objects.equals(feedbackModel.get().getSentiment(), Sentiment.POSITIVO.toString()) ? "Agradecemos pela avaliação!":"Perdão pelo Ocorrido!";
+            response = chatClient.call(new PromptTemplate(prompt + increment).create())
+                    .getResult()
+                    .getOutput()
+                    .getContent();
+        }
+        return response;
     }
 }

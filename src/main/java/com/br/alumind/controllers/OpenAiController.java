@@ -7,15 +7,13 @@ import com.br.alumind.utils.AnalysisResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/ai")
+@RequestMapping("/api/feedeback")
 public class OpenAiController {
     @Autowired
     OpenAiService openAiService;
@@ -34,5 +32,15 @@ public class OpenAiController {
         }
 
         return new ResponseEntity<>("Erro ao tentar salvar Feedback. Spam detectado!", HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/person/{id}")
+    public ResponseEntity<?> PersonFeedback(@RequestParam UUID id){
+        String response = openAiService.generateResponseFeedback(id);
+        if(Objects.nonNull(response)) {
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
     }
 }

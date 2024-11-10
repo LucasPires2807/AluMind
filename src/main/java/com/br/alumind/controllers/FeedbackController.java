@@ -14,15 +14,13 @@ import java.util.Objects;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/feedback")
+@RequestMapping("api")
 public class FeedbackController {
     @Autowired
     private FeedbackService service;
     @Autowired
     private OpenAiService openAiService;
     private final FeedbackDto dto;
-    @Autowired
-    private OpenAiChatModel  chatClient;
 
     public FeedbackController() {
         this.dto = new FeedbackDto();
@@ -44,13 +42,13 @@ public class FeedbackController {
         return response;
     }
 
-    @GetMapping
+    @GetMapping("feedback")
     public ResponseEntity<List<FeedbackDto.ResponseFeedback>> findAll(){
         List<FeedbackDto.ResponseFeedback> feedbacks = service.findAll();
         return new ResponseEntity<>(feedbacks, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "feedback/{id}")
     public ResponseEntity<?> findById(@PathVariable UUID id){
         ResponseEntity response;
         FeedbackDto.ResponseFeedback responseFeedback = service.findById(id);
@@ -62,7 +60,7 @@ public class FeedbackController {
         return response;
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "feedback/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id){
         ResponseEntity response;
 

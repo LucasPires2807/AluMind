@@ -2,6 +2,10 @@ package com.br.alumind.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.TimeZone;
 import java.util.UUID;
 
 @Data
@@ -15,12 +19,14 @@ public class FeedbackModel {
     UUID id;
     String text;
     String sentiment;
+    private LocalDateTime date_create;
 
     @Builder
     public FeedbackModel(UUID id, String text, String sentiment) {
         this.id = id;
         this.text = text;
         this.sentiment = Sentiment.convertToEnum(sentiment).toString();
+        this.date_create = LocalDateTime.now();
     }
 
 }
