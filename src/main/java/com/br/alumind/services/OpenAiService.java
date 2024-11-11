@@ -96,7 +96,7 @@ public class OpenAiService {
         String response = null;
         Optional<FeedbackModel> feedbackModel = feedbackRepository.findById(id);
         if(feedbackModel.isPresent()){
-            String prompt = "Gere uma resposta resumida e objetiva para esse feedback: %s Adicione a seguinte fase: "
+            String prompt = "Gere uma resposta resumida e objetiva para esse feedback: %s Adicione a seguinte frase: "
                     .formatted(feedbackModel.get().getText());
             String increment = Objects.equals(feedbackModel.get().getSentiment(), Sentiment.POSITIVO.toString()) ? "Agradecemos pela avaliação!":"Perdão pelo Ocorrido!";
             response = chatClient.call(new PromptTemplate(prompt + increment).create())
