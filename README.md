@@ -1,7 +1,7 @@
 # AluMind
 Este projeto proporciona uma API para avaliação de feedbacks com base nos sentimentos transmitidos no conteúdo das mensagens enviadas pelos usuários. O principal objetivo consiste em fazer uso de LLMs (Large Language Model), para classificar os feedbacks recebidos como positivos ou negativos, e a partir disso avaliar a mensagem e gerar resultados.
   ### Ferramentas ⚙️
-  - Java (v9.^)
+  - Java (v21)
   - Maven (v3.^)
   - Docker
   ### Dependências e Bibliotecas 📚
