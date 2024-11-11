@@ -92,11 +92,11 @@ Para geração de respostas personalizadas foi usado uma requisição http Post,
 
 - Resposta personalizada para feedback positivo
 
-![Imagem 5](prints/resposta_positiva.png)
+![Imagem 6](prints/resposta_positiva_personalizada.png)
 
 - Resposta personalizada para feedback negativo
 
-![Imagem 6](prints/resposta_negativa.png)
+![Imagem 7](prints/resposta_negativa_personalizada.png)
 
 
 
