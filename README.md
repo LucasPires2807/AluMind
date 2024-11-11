@@ -42,6 +42,8 @@ Após criar seu banco de dados localmente com as informações de usuário e sen
 Caso deseje, você pode remover essa funcionalidade no arquivo application.properties atribuindo false na seguinte configuração: 
   - spring.flyway.enabled
 
+## Respostas - Case
+
 **Explicação da utilização do OpenAI:**
 
 Optei por realizar a integração com a ferramenta da OpenAI para modelos de LLMs, devido sua praticidade, além de sua documentação detalhada e simples.
@@ -52,27 +54,27 @@ Umas das possíveis melhorias no projeto seria adicionar mais ferramentas dispon
 
 **Documentação API**
 
-![](Aspose.Words.6dc9dd38-457e-4056-a8d8-41fa41c596fd.001.jpeg)
+![Imagem 1](prints/api_docs.png)
 
 **Case 1 - Classificação de Feedbacks Resposta da API:**
 
 - Usuário envia feedback positivo
 
-![](Aspose.Words.6dc9dd38-457e-4056-a8d8-41fa41c596fd.002.jpeg)
+![Imagem 2](prints/feedback_positivo.png)
 
 - Usuário envia feedback negativo
 
-![](Aspose.Words.6dc9dd38-457e-4056-a8d8-41fa41c596fd.003.jpeg)
+![Imagem 3](prints/feedback_negativo.png)
 
 **Case 2 - Marcação de SPAM**
 
 - Conteúdo do feedback sem relação com a AluMind
 
-![](Aspose.Words.6dc9dd38-457e-4056-a8d8-41fa41c596fd.004.jpeg)
+![Imagem 4](prints/spam_2.png)
 
 - **Feedback com conteúdo agressivo**
 
-![](Aspose.Words.6dc9dd38-457e-4056-a8d8-41fa41c596fd.005.jpeg)
+![Imagem 5](prints/spam_1.png)
 
 **Case 3 - Nova feature**
 
@@ -90,11 +92,11 @@ Para geração de respostas personalizadas foi usado uma requisição http Post,
 
 - Resposta personalizada para feedback positivo
 
-![](Aspose.Words.6dc9dd38-457e-4056-a8d8-41fa41c596fd.006.jpeg)
+![Imagem 5](prints/resposta_positiva.png)
 
 - Resposta personalizada para feedback negativo
 
-![](Aspose.Words.6dc9dd38-457e-4056-a8d8-41fa41c596fd.007.jpeg)
+![Imagem 6](prints/resposta_negativa.png)
 
 
 
