@@ -3,6 +3,7 @@
   ### Ferramentas
   - Java (v9.^)
   - Maven (v3.^)
+  - Docker
   ### Dependências e Bibliotecas
   -  Spring Boot (v3.3.5)
   -  Spring Data JPA (v3.3.5)
