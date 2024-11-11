@@ -30,7 +30,7 @@ A aplicação realiza uma integração com as ferramentas disponibilizadas pela 
   $  mvn clean install
   $  mvn spring-boot:run
   ```
-### Usando um container :docker:
+### Usando um container 🐋
 Caso não queira criar um banco localmente, ou se desejar você pode executar a aplicação usando um container docker. Para isso vá até o diretório principal do projeto e execute 
 o comando para iniciar o container (certifique-se de ter o docker instalado e configurado em sua maquina):
  ```bash
