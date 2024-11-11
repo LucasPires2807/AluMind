@@ -21,7 +21,7 @@ No Arquivo application.properties dentro do diretório resources, adicione as in
 - - spring.datasource.password=postgres
 
 ## Banco de Dados :bank:
-### Ferramenta
+### Ferramentas
 - PostgresSQL (v19.1)
 - Flyway Core
 ### Migrações
