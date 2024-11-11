@@ -39,7 +39,7 @@ o comando para iniciar o container (certifique-se de ter o docker instalado e co
 ### Migrações 📂
 Após criar seu banco de dados localmente com as informações de usuário e senha execute o projeto. O arquivo de migração será executado automaticamente para criar a tabela "feedback" do banco, além de inserir dados fictícios de feedback. 
 Caso deseje, você pode remover essa funcionalidade no arquivo application.properties atribuindo false na seguinte configuração: 
-  - spring.flyway.enabled
+    - spring.flyway.enabled
 
 
   
