@@ -10,6 +10,7 @@ Este projeto proporciona uma API para avaliação de feedbacks com base nos sent
   -  Spring AI(v1.0.0-M3)
   - OpenAI integration
   - Swagger
+  - Lombok
   ### Ferramentas Banco de Dados 🏦
   - PostgresSQL (v19.1)
   - Flyway Core
