@@ -17,8 +17,8 @@
 No Arquivo application.properties dentro do diretório resources, adicione as informações para conexão com seu banco de dados.
 - Exemplo:
     - spring.datasource.url=jdbc:postgresql://localhost:5432/alumind_db
-- - spring.datasource.username=postgres
-- - spring.datasource.password=postgres
+    - spring.datasource.username=postgres
+    - spring.datasource.password=postgres
 
 ## Banco de Dados :bank:
 ### Ferramentas
