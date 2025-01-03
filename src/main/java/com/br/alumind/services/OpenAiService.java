@@ -8,7 +8,7 @@ import com.br.alumind.repositories.FeedbackRepository;
 import com.br.alumind.utils.AnalysisResult;
 import com.google.gson.Gson;
 import org.springframework.ai.chat.prompt.PromptTemplate;
-import org.springframework.ai.openai.OpenAiChatModel;
+//import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,13 +18,13 @@ import java.util.Optional;
 import java.util.UUID;
 @Service
 public class OpenAiService {
-   @Value("${openai.api.key}")
+  /* @Value("${openai.api.key}")
     private String apiKey;
 
     @Value("${openai.api.url}")
     private String apiUrl;
-    @Autowired
-    private OpenAiChatModel chatClient;
+    //@Autowired
+    //private OpenAiChatModel chatClient;
     @Autowired
     private FeatureRepository featureRepository;
     @Autowired
@@ -32,8 +32,8 @@ public class OpenAiService {
 
     public String avaiableFeedback(String prompt){
         PromptTemplate promptTemplate = new PromptTemplate( "Esse feedback é positivo? responda com sim ou não" + prompt);
-        String avaiable = this.chatClient.call(promptTemplate.create()).getResult().getOutput().getContent();
-        if(avaiable.toLowerCase().contains("sim")){
+      //  String avaiable = this.chatClient.call(promptTemplate.create()).getResult().getOutput().getContent();
+       if(avaiable.toLowerCase().contains("sim")){
             return "positivo";
         }
         return "negativo";
@@ -42,19 +42,19 @@ public class OpenAiService {
     public boolean avaiableSpamFeedback(String prompt){
         PromptTemplate promptTemplate = new PromptTemplate( "Estou desenvolvendo uma plataforma de estudos online chamada Alumind!" +
                 "O conteudo desse feedback pode ser relacionado a Alumind? responda com sim ou não" + prompt);
-        String validation_1 = this.chatClient.call(promptTemplate.create()).getResult().getOutput().getContent();
-        if(validation_1.contains("Não")) return true;
+    //    String validation_1 = this.chatClient.call(promptTemplate.create()).getResult().getOutput().getContent();
+       // if(validation_1.contains("Não")) return true;
 
         promptTemplate = new PromptTemplate( "O conteudo desse feedback é agressivo? responda com sim ou não" + prompt);
-        String validation_2 = this.chatClient.call(promptTemplate.create()).getResult().getOutput().getContent();
-        if(validation_2.contains("Sim")) return true;
+       // String validation_2 = this.chatClient.call(promptTemplate.create()).getResult().getOutput().getContent();
+        //if(validation_2.contains("Sim")) return true;
 
         return false;
     }
 
     public FeaturesModel saveFeature(String prompt, UUID feedback_id){
         PromptTemplate promptTemplate = new PromptTemplate( "Esse feedback possui alguma sugestão? responda com sim ou não" + prompt);
-        String feature = this.chatClient.call(promptTemplate.create()).getResult().getOutput().getContent();
+     //   String feature = this.chatClient.call(promptTemplate.create()).getResult().getOutput().getContent();
         if(feature.toLowerCase().contains("sim")){
             promptTemplate = new PromptTemplate("Estou avaliando os feedbacks recebidos na minha plataforma de estudos online chamada Alumind! " +
                     "Qual foi a sugestão feita pelo usuário? "+ prompt);
@@ -81,8 +81,9 @@ public class OpenAiService {
                 .getOutput()
                 .getContent();
         Gson gson = new Gson();
-        AnalysisResult analysisResult = gson.fromJson("{"+jsonResponse+"}", AnalysisResult.class);
-        return analysisResult;
+      //  AnalysisResult analysisResult = gson.fromJson("{"+jsonResponse+"}", AnalysisResult.class);
+      //  return analysisResult;
+        return gson.fromJson(fullPrompt, AnalysisResult.class);
     }
 
     public FeaturesModel saveFeatureFromAnalise(String reason, UUID feedback_id) {
@@ -95,7 +96,7 @@ public class OpenAiService {
     public String generateResponseFeedback(UUID id){
         String response = null;
         Optional<FeedbackModel> feedbackModel = feedbackRepository.findById(id);
-        if(feedbackModel.isPresent()){
+     /*   if(feedbackModel.isPresent()){
             String prompt = "Gere uma resposta resumida e objetiva para esse feedback: %s Adicione a seguinte frase: "
                     .formatted(feedbackModel.get().getText());
             String increment = Objects.equals(feedbackModel.get().getSentiment(), Sentiment.POSITIVO.toString()) ? "Agradecemos pela avaliação!":"Perdão pelo Ocorrido!";
@@ -105,5 +106,7 @@ public class OpenAiService {
                     .getContent();
         }
         return response;
+
     }
+    */
 }

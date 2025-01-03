@@ -30,12 +30,12 @@ public class FeedbackDto {
     public record ResponseFeedback(UUID id, String sentiment, ArrayList<ResponseFeature> requested_features){}
     public record ResponseFeature(String code, String reason){}
 
-    public ResponseFeedback buildFeedbackToResponseFeedback(FeedbackModel feedback, FeaturesModel featuresModel){
+   /* public ResponseFeedback buildFeedbackToResponseFeedback(FeedbackModel feedback, FeaturesModel featuresModel){
         ArrayList<ResponseFeature> arrayList = new ArrayList();
         if(!Objects.isNull(featuresModel)){
             arrayList.add(new ResponseFeature(featuresModel.getId().toString(), featuresModel.getReason()));
         }
         return new ResponseFeedback(feedback.getId(), feedback.getSentiment(), arrayList);
-    }
+    } */
 }
 

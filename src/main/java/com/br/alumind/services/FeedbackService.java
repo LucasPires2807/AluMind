@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @Service
 public class FeedbackService  {
-
+/*
     @Autowired
     private FeedbackRepository repository;
     //@Autowired
@@ -86,6 +86,6 @@ public class FeedbackService  {
             isDelet = true;
         }
         return isDelet;
-    }
+    } */
 
 }

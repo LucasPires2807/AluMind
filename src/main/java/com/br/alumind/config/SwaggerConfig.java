@@ -14,10 +14,10 @@ public class SwaggerConfig {
                 .version("V1.0.0");
     }
 
-    @Bean
-    public OpenAPI openApiInformation() {
+    //@Bean
+    /*public OpenAPI openApiInformation() {
         return new OpenAPI().info(infoApi());
-    }
+    }*/
 }
 
 

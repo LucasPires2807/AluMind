@@ -3,7 +3,7 @@ package com.br.alumind.controllers;
 import com.br.alumind.dtos.FeedbackDto;
 import com.br.alumind.services.FeedbackService;
 import com.br.alumind.services.OpenAiService;
-import org.springframework.ai.openai.OpenAiChatModel;
+//import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("api")
 public class FeedbackController {
-    @Autowired
+ /*   @Autowired
     private FeedbackService service;
     @Autowired
     private OpenAiService openAiService;
@@ -70,5 +70,5 @@ public class FeedbackController {
             response = new ResponseEntity<>("Erro ao tentar deletar Feedback", HttpStatus.BAD_REQUEST);
         }
         return response;
-    }
+    } */
 }

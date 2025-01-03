@@ -15,32 +15,5 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/feedeback")
 public class OpenAiController {
-    @Autowired
-    OpenAiService openAiService;
-    @Autowired
-    FeedbackService feedbackService;
-    @PostMapping
-    public ResponseEntity<?> save(@RequestBody FeedbackDto.RequestFeedback request){
-        AnalysisResult analyze = openAiService.analyzeFeedback(request.feedback());
-        if(!openAiService.avaiableSpamFeedback(request.feedback())) {
-            FeedbackDto.ResponseFeedback responseFeedback = feedbackService.saveFromAnalize(analyze, request.feedback());
-            if(!Objects.isNull(responseFeedback)){
-                return new ResponseEntity<>(responseFeedback, HttpStatus.OK);
-            }else{
-                return new ResponseEntity<>("Erro ao tentar salvar Feedback", HttpStatus.BAD_REQUEST);
-            }
-        }
 
-        return new ResponseEntity<>("Erro ao tentar salvar Feedback. Spam detectado!", HttpStatus.BAD_REQUEST);
-    }
-
-    @PostMapping("/person/{id}")
-    public ResponseEntity<?> PersonFeedback(@RequestParam UUID id){
-        String response = openAiService.generateResponseFeedback(id);
-        if(Objects.nonNull(response)) {
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
-    }
 }
