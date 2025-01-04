@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.TimeZone;
-import java.util.UUID;
+import java.util.Map;
+
+import org.springframework.ai.document.Document;
+
 
 @Data
 @NoArgsConstructor
@@ -16,17 +17,21 @@ import java.util.UUID;
 public class FeedbackModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    UUID id;
+    int id;
     String text;
     String sentiment;
     private LocalDateTime date_create;
 
     @Builder
-    public FeedbackModel(UUID id, String text, String sentiment) {
+    public FeedbackModel(int id, String text, String sentiment) {
         this.id = id;
         this.text = text;
         this.sentiment = Sentiment.convertToEnum(sentiment).toString();
         this.date_create = LocalDateTime.now();
+    }
+
+    public Document toDocument(@NonNull FeedbackModel feedbackModel) {
+        return new Document(feedbackModel.getText(), Map.of("data_created", feedbackModel.date_create, "id", feedbackModel.getId()));
     }
 
 }

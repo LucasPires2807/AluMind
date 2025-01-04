@@ -1,29 +1,35 @@
 package com.br.alumind.services;
 
+import com.br.alumind.models.FeedbackModel;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.reader.ExtractedTextFormatter;
 import org.springframework.ai.reader.pdf.PagePdfDocumentReader;
 import org.springframework.ai.reader.pdf.config.PdfDocumentReaderConfig;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.ai.document.Document;
 
-import org.springframework.ai.transformer.splitter.TokenTextSplitter;
-import org.springframework.ai.vectorstore.VectorStore;
+
 import org.springframework.core.io.Resource;
 
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
+//serviço para carregar os dados de arquivos pdf e ou csv
 public class DataLoaderService {
-    private static final Logger logger = LoggerFactory.getLogger(DataLoaderService.class);
 
-    @Value("classpath:/feedback_negativo_exemplo.pdf")
-    private Resource pdfResource;
 
-    @Autowired
-    private VectorStore vectorStore;
     private static final Logger log = LoggerFactory.getLogger(DataLoaderService.class);
-
 
     /*
     *  O método load() usa a classe
@@ -31,8 +37,8 @@ public class DataLoaderService {
     *  e carregá-lo no Vector DB
     * */
 
-    public void load() {
-        PagePdfDocumentReader pdfReader = new PagePdfDocumentReader(this.pdfResource,
+    public List<Document> loadPdf(Resource resource) {
+        PagePdfDocumentReader pdfReader = new PagePdfDocumentReader(resource,
                 PdfDocumentReaderConfig.builder()
                         .withPageExtractedTextFormatter(ExtractedTextFormatter.builder()
                                 .withNumberOfBottomTextLinesToDelete(3)
@@ -41,9 +47,32 @@ public class DataLoaderService {
                         .withPagesPerDocument(1)
                         .build());
 
-        var tokenTextSplitter = new TokenTextSplitter();
-        this.vectorStore.accept(tokenTextSplitter.apply(pdfReader.get()));
+        return pdfReader.get();
         //log.info("Documentos Recuperados para [%s]:".formatted(pdfReader.get()));
 
+    }
+
+    public List<Document> getContentFromCsv(Resource resource){
+        try (Reader reader = Files.newBufferedReader(Paths.get(resource.getURI()))
+             ; CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
+                .builder()
+                .setHeader().setSkipHeaderRecord(true)
+                .setTrim(true)
+                .setIgnoreEmptyLines(true)
+                .setIgnoreHeaderCase(true)
+                .build())) {
+            List<Document> documentsToAdd = new ArrayList<>();
+            for (CSVRecord csvRecord : csvParser) {
+                FeedbackModel paragraph = FeedbackModel.builder()
+                        .id(Integer.parseInt(csvRecord.get("DOC_ID")))
+                        .text(Arrays.stream(csvRecord.get("display").split(" ")).filter(s -> s.equals(s.toUpperCase())).collect(Collectors.joining(" ")))
+                        .text(csvRecord.get("passage"))
+                        .build();
+                documentsToAdd.add(paragraph.toDocument(paragraph));
+            }
+            return documentsToAdd;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
