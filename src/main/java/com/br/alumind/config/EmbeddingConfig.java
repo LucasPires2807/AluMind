@@ -8,7 +8,7 @@ import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RagConfig {
+public class EmbeddingConfig {
 
    /* @Bean
     VectorStore vectorStore(EmbeddingModel embeddingModel) {

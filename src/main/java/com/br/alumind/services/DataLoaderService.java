@@ -37,7 +37,7 @@ public class DataLoaderService {
     *  e carregá-lo no Vector DB
     * */
 
-    public List<Document> loadPdf(Resource resource) {
+    public List<Document> getContentFromPdf(Resource resource) {
         PagePdfDocumentReader pdfReader = new PagePdfDocumentReader(resource,
                 PdfDocumentReaderConfig.builder()
                         .withPageExtractedTextFormatter(ExtractedTextFormatter.builder()
@@ -65,8 +65,8 @@ public class DataLoaderService {
             for (CSVRecord csvRecord : csvParser) {
                 FeedbackModel paragraph = FeedbackModel.builder()
                         .id(Integer.parseInt(csvRecord.get("DOC_ID")))
-                        .text(Arrays.stream(csvRecord.get("display").split(" ")).filter(s -> s.equals(s.toUpperCase())).collect(Collectors.joining(" ")))
                         .text(csvRecord.get("passage"))
+                        .sentiment("")
                         .build();
                 documentsToAdd.add(paragraph.toDocument(paragraph));
             }

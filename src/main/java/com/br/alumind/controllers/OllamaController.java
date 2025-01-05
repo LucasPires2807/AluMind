@@ -22,7 +22,7 @@ public class OllamaController {
     }
 
     @GetMapping("/generateRAG")
-    public Map generateRAG(@RequestParam(value = "message", defaultValue = "liste alguns emuladores") String message) {
+    public Map generateRAG(@RequestParam(value = "message") String message) {
         try {
             return Map.of("ollama", chatService.runRAG(message));
         } catch (IOException e) {

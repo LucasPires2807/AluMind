@@ -5,6 +5,8 @@ import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.ai.document.Document;
 import org.springframework.stereotype.Component;
+
+import java.util.Collections;
 import java.util.List;
 
 //repositóey para conexão com o pgVector

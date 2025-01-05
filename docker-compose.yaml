@@ -2,7 +2,7 @@ version: "3.5"
 services:
   db:
     container_name: alumind-db
-    image: postgres
+    image: ankane/pgvector
     environment:
       POSTGRES_DB: alumind_db
       POSTGRES_USER: postgres
