@@ -9,10 +9,12 @@ Este projeto proporciona uma API para avaliação de feedbacks com base nos sent
   -  Spring Data JPA (v3.3.5)
   -  Spring AI(v1.0.0-M3)
   - OpenAI integration
+  - - Ollama integration
   - Swagger
   - Lombok
   ### Ferramentas Banco de Dados 🏦
   - PostgresSQL (v19.1)
+  - pgVector
   - Flyway Core
   
   No Arquivo application.properties dentro do diretório resources, adicione as informações para conexão com seu banco de dados. Lembre-se de criar um banco localmente usando as mesmas configurações de acesso determinadas no arquivo application.properties.
