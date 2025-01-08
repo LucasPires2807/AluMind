@@ -15,6 +15,7 @@ import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -35,15 +36,18 @@ public class RagService {
     private VectorDatabaseRepository documentRepository;
 
     public Prompt generatePromptFromPromptRequest(String clientPrompt) {
-        List<Document> docs = documentRepository.similaritySearchWithTopK(clientPrompt, topK);
-        Message systemMessage = getMessageFromRagTemplate(docs);
-        log.info("System message: {}", systemMessage.getContent());
+        log.info("Generating prompt for client prompt: {}", clientPrompt);
+        List<Document> docs = documentRepository.similaritySearchWithTopK(clientPrompt, 5);
+        Message systemMessage = getMessageFromRagTemplate(docs, clientPrompt);
         UserMessage userMessage = new UserMessage(clientPrompt);
         return new Prompt(List.of(systemMessage, userMessage));
     }
-    private Message getMessageFromRagTemplate(List<Document> similarDocuments) {
+    private Message getMessageFromRagTemplate(List<Document> similarDocuments, String question) {
         String documents = similarDocuments.stream().map(Document::getContent).collect(Collectors.joining("\n"));
         SystemPromptTemplate systemPromptTemplate = new SystemPromptTemplate(ragPromptTemplate);
-        return systemPromptTemplate.createMessage(Map.of("documents", documents));
+        Map mapper = new HashMap();
+        mapper.put("documents", documents);
+        mapper.put("input", question);
+        return systemPromptTemplate.createMessage(mapper);
     }
 }

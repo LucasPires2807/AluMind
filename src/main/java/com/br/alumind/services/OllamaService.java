@@ -41,16 +41,15 @@ public class OllamaService {
 
 
     public String runRAG(String message) throws IOException {
-        Document doc = new Document(message);
-        repository.addDocuments(Collections.singletonList(doc));
 
         var chatClient = chatClientBuilder.build();
         Prompt prompt = ragService.generatePromptFromPromptRequest(message);
+        String ollamaResponse = chatClient.prompt(prompt).call().content();
 
-        return chatClient
-                .prompt(prompt)
-                .call()
-                .content();
+        Document doc = new Document(ollamaResponse);
+        repository.addDocuments(Collections.singletonList(doc));
+
+        return ollamaResponse;
 
     }
 }

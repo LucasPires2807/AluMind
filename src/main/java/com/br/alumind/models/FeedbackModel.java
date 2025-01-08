@@ -31,7 +31,7 @@ public class FeedbackModel {
     }
 
     public Document toDocument(@NonNull FeedbackModel feedbackModel) {
-        return new Document(feedbackModel.getText(), Map.of("date_created", feedbackModel.date_create.toString(), "id", feedbackModel.getId()));
+        return new Document(feedbackModel.getText(), Map.of("sentimentType", feedbackModel.sentiment, "id", feedbackModel.getId()));
     }
 
 }
