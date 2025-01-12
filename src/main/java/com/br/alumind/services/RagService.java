@@ -43,11 +43,19 @@ public class RagService {
         return new Prompt(List.of(systemMessage, userMessage));
     }
     private Message getMessageFromRagTemplate(List<Document> similarDocuments, String question) {
-        String documents = similarDocuments.stream().map(Document::getContent).collect(Collectors.joining("\n"));
+
+        List<String> documents = similarDocuments.stream().map(Document::getContent).collect(Collectors.toList());
         SystemPromptTemplate systemPromptTemplate = new SystemPromptTemplate(ragPromptTemplate);
-        Map mapper = new HashMap();
-        mapper.put("documents", documents);
-        mapper.put("input", question);
+        Map<String, Object> mapper = new HashMap<>();
+        // Adiciona os exemplos ao template
+        for (int i = 0; i < documents.size(); i++) {
+            mapper.put("feedback_exemplo_" + (i + 1), documents.get(i));
+            mapper.put("sentimento_exemplo_" + (i + 1), ""); // Pode ser ajustado para o sentimento correspondente
+            mapper.put("justificativa_exemplo_" + (i + 1), ""); // Pode ser ajustado para a justificativa correspondente
+        }
+
+        //mapper.put("documents", documents);
+        mapper.put("feedback", question);
         return systemPromptTemplate.createMessage(mapper);
     }
 }

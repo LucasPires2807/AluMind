@@ -1,5 +1,6 @@
 package com.br.alumind.services;
 
+import com.br.alumind.models.FeedbackModel;
 import com.br.alumind.repositories.VectorDatabaseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,17 +27,32 @@ public class OllamaService {
 
     private static final Logger log = LoggerFactory.getLogger(DataLoaderService.class);
 
+    public FeedbackModel runClassify(String userPrompt) {
 
-    public String run(String userPrompt) {
+        var chatClient = chatClientBuilder.build();
+
+        FeedbackModel   feedbackModel = chatClient
+                .prompt()
+                .system("Analise o seguinte feedback de um cliente e classifique-o como " +
+                        "\"positivo\", \"negativo\" ou \"neutro\". Justifique a sua escolha!.")
+                .user(userPrompt)
+                .call()
+                .entity(FeedbackModel.class);
+
+        return feedbackModel;
+    }
+
+    public String runClassifyTest(String userPrompt) {
 
         var chatClient = chatClientBuilder.build();
 
         return chatClient
                 .prompt()
+                .system("Analise o seguinte feedback de um cliente e classifique-o como " +
+                        "\"positivo\", \"negativo\" ou \"neutro\". Qual justificativa feita pelo feedback?")
                 .user(userPrompt)
                 .call()
-                .content()
-                .replace("\n", "");
+                .content();
     }
 
 

@@ -63,12 +63,14 @@ public class DataLoaderService {
                 .build())) {
             List<Document> documentsToAdd = new ArrayList<>();
             for (CSVRecord csvRecord : csvParser) {
-                FeedbackModel paragraph = FeedbackModel.builder()
+                FeedbackModel feedbackModel = FeedbackModel.builder()
                         .id(Integer.parseInt(csvRecord.get("DOC_ID")))
-                        .text(csvRecord.get("passage"))
-                        .sentiment("")
+                        .text(csvRecord.get("TEXT"))
+                        .sentiment(csvRecord.get("SENTIMENT"))
+                        .justify(csvRecord.get("JUSTIFY"))
                         .build();
-                documentsToAdd.add(paragraph.toDocument(paragraph));
+                documentsToAdd.add(feedbackModel.toDocument(feedbackModel));
+                //salvar analise
             }
             return documentsToAdd;
         } catch (IOException e) {

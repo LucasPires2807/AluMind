@@ -1,4 +1,4 @@
-DOC_ID,passage,para,filename,page,display,highlight
-0,"Confidentiality agreement: this confidentiality agreement (the “agreement”) is made by and between ACME, dba ToTheMoon Inc. with offices at 2025 Guadalupe St. Suite 260 Austin TX 78705 and StarWars dba ToTheMars with offices at the Forest Moon of Endor, entered as of May 3, 2023 (“effective date”).",Confidentiality agreement: this confidentiality agreement (the “agreement”) is made.,contract_1.pdf,1,Confidentiality Agreement,Confidentiality agreement
-1,"Non-disclosure agreement: parties agree not to disclose confidential information shared during the course of their partnership effective January 1, 2024.",Non-disclosure agreement: parties agree not to disclose confidential information.,nda_2.pdf,3,Non-Disclosure Agreement,Non-disclosure agreement
-2,"Service Level Agreement: This SLA outlines the service commitments between ACME Corp and Endor Services effective July 15, 2023.",Service Level Agreement: This SLA outlines the service commitments.,sla_3.pdf,2,Service Level Agreement,Service Level Agreement
+DOC_ID,TEXT,SENTIMENT,JUSTIFY
+0,"A entrega atrasou e fiquei sem suporte.",negativo,insatisfação com atraso e falta de suporte.
+1,"Recebi o produto antes do prazo, muito rápido!",positivo, O feedback expressa satisfação com a rapidez na entrega.
+2,"O produto veio no prazo, mas a embalagem estava danificada.",Neutro,Apesar de mencionar um problema, o feedback também aponta que o prazo foi cumprido.

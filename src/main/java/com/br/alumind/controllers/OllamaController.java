@@ -1,5 +1,6 @@
 package com.br.alumind.controllers;
 
+import com.br.alumind.models.FeedbackModel;
 import com.br.alumind.services.OllamaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +15,13 @@ public class OllamaController {
 
     @Autowired
     private OllamaService chatService;
-
+    public record Response(String justify, String Sentiment){}
 
     @GetMapping("generate")
     public Map generate(@RequestParam(value = "message") String message) {
-        return Map.of("ollama", chatService.run(message));
+        FeedbackModel feedbackModel = chatService.runClassify(message);
+        return Map.of("ollama", new Response(feedbackModel.getJustify(),
+                feedbackModel.getSentiment()));
     }
 
     @GetMapping("/generateRAG")

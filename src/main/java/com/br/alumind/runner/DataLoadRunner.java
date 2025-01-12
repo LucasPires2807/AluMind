@@ -41,7 +41,7 @@ public class DataLoadRunner implements ApplicationRunner {
         log.info("Adding documents to vector store from PDF");
         List<Document> documentsPDF = service.getContentFromPdf(resourcePdf);
         documentsPDF.forEach(doc -> log.debug("Document: {}", doc));
-        documentRepository.addDocuments(documentsPDF);
+        //documentRepository.addDocuments(documentsPDF);
         log.info("done!");
 
         log.info("Adding documents to vector store from List");
@@ -52,7 +52,7 @@ public class DataLoadRunner implements ApplicationRunner {
         );
 
         // Add the documents to PGVector
-        documentRepository.addDocuments(documents);
+        //documentRepository.addDocuments(documents);
         log.info("done!");
     }
 }
