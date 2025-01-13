@@ -16,7 +16,8 @@ public class OllamaController {
     @Autowired
     private OllamaService chatService;
     public record Response(String justify, String Sentiment){}
-
+    //testar rag com template personalizdo
+    //melhorar a justifictiva do modelo
     @GetMapping("generate")
     public Map generate(@RequestParam(value = "message") String message) {
         FeedbackModel feedbackModel = chatService.runClassify(message);

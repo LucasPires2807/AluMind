@@ -30,15 +30,15 @@ public class FeedbackModel {
         this.sentiment = Sentiment.convertToEnum(sentiment).toString();
         this.date_create = LocalDateTime.now();
         this.justify = justify;
-    }
-
-    public Document toDocument(@NonNull FeedbackModel feedbackModel) {
+    } public Document toDocument(@NonNull FeedbackModel feedbackModel) {
         return new Document(feedbackModel.getText(),
                 Map.of("sentimentType", feedbackModel.sentiment,
-                "justify", feedbackModel.justify,
-                "id", feedbackModel.getId())
+                        "justify", feedbackModel.justify,
+                        "id", feedbackModel.getId())
         );
     }
+
+
 
     @Override
     public String toString() {

@@ -60,12 +60,15 @@ public class OllamaService {
 
         var chatClient = chatClientBuilder.build();
         Prompt prompt = ragService.generatePromptFromPromptRequest(message);
-        String ollamaResponse = chatClient.prompt(prompt).call().content();
+        FeedbackModel ollamaResponse = chatClient.
+                prompt(prompt)
+                .call()
+                .entity(FeedbackModel.class);
 
-        Document doc = new Document(ollamaResponse);
-        repository.addDocuments(Collections.singletonList(doc));
+        //Document doc = new Document(ollamaResponse);
+        repository.addDocuments(Collections.singletonList(ollamaResponse.toDocument(ollamaResponse)));
 
-        return ollamaResponse;
+        return ollamaResponse.toString();
 
     }
 }
