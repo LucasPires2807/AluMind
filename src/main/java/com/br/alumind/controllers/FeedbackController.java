@@ -16,7 +16,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("api")
 public class FeedbackController {
- /*   @Autowired
+    @Autowired
     private FeedbackService service;
     @Autowired
     private OpenAiService openAiService;
@@ -27,6 +27,20 @@ public class FeedbackController {
     }
 
     @PostMapping
+    public ResponseEntity<?> save(@RequestBody FeedbackDto.RequestFeedback request){
+        ResponseEntity response;
+        FeedbackDto.ResponseFeedback responseFeedback = service.save(request);
+        if(!Objects.isNull(responseFeedback)){
+            response = new ResponseEntity<>(responseFeedback, HttpStatus.OK);
+        }else{
+            response = new ResponseEntity<>("Erro ao tentar salvar Feedback", HttpStatus.BAD_REQUEST);
+        }
+
+        return response;
+       //receber feedback e salvar avaliação dele como positivo ou negativo
+    }
+
+    /**@PostMapping
     public ResponseEntity<?> save(@RequestBody FeedbackDto.RequestFeedback request){
         ResponseEntity response;
         if(openAiService.avaiableSpamFeedback(request.feedback())) {

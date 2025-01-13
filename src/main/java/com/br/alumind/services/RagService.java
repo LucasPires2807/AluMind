@@ -39,15 +39,27 @@ public class RagService {
         log.info("Generating prompt for client prompt: {}", clientPrompt);
         List<Document> docs = documentRepository.similaritySearchWithTopK(clientPrompt, 5);
         Message systemMessage = getMessageFromRagTemplate(docs, clientPrompt);
+        log.info("Generating prompt custimize: {}", systemMessage);
         UserMessage userMessage = new UserMessage(clientPrompt);
         return new Prompt(List.of(systemMessage, userMessage));
     }
     private Message getMessageFromRagTemplate(List<Document> similarDocuments, String question) {
-        String documents = similarDocuments.stream().map(Document::getContent).collect(Collectors.joining("\n"));
+
+        List<String> documents = similarDocuments.stream().map(Document::getContent).collect(Collectors.toList());
         SystemPromptTemplate systemPromptTemplate = new SystemPromptTemplate(ragPromptTemplate);
-        Map mapper = new HashMap();
-        mapper.put("documents", documents);
-        mapper.put("input", question);
+        Map<String, Object> mapper = new HashMap<>();
+        // Adiciona os exemplos ao template
+        for (int i = 0; i < 1; i++) {
+            Document document = similarDocuments.get(i);
+            Map<String, Object> metadata = document.getMetadata(); // Obtém os metadados do documento
+            //log.info("metadata: {}", metadata);
+            // Preenche os exemplos no mapper com os dados reais
+            mapper.put("feedback_" + (i + 1), document.getContent());
+            mapper.put("sentimento_" + (i + 1), metadata.getOrDefault("sentimentType", "")); // Tipo de sentimento
+            mapper.put("justificativa_" + (i + 1), metadata.getOrDefault("justify", ""));    // Justificativa
+        }
+
+        mapper.put("feedback", question);
         return systemPromptTemplate.createMessage(mapper);
     }
 }
