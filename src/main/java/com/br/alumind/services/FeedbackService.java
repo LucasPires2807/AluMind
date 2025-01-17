@@ -27,17 +27,7 @@ public class FeedbackService  {
     }
 
     public FeedbackDto.ResponseFeedback save(FeedbackDto.RequestFeedback request) {
-        FeedbackDto.ResponseFeedback responseFeedeback = null;
-        //classificar sentimento
-        FeedbackModel classify = service.runClassify(request.feedback());
-        FeedbackModel feedeback = new FeedbackModel().builder()
-                .text(request.feedback())
-                .sentiment(classify.getSentiment())
-                .justify(classify.getJustify())
-                .build();
-        FeedbackModel createFeedback = repository.save(feedeback);
-        responseFeedeback = dto.buildFeedbackToResponseFeedback(createFeedback);
-        return responseFeedeback;
+        return service.runClassify(request.feedback());
     }
 
     public FeedbackDto.ResponseFeedback findById(UUID id){
@@ -56,21 +46,6 @@ public class FeedbackService  {
             return dto.buildFeedbackToResponseFeedback(Feedeback);
         }).toList();
     }
-/*
-    public FeedbackDto.ResponseFeedback saveFromAnalize(AnalysisResult analysisResult, String feedback){
-        FeedbackDto.ResponseFeedback responseFeedeback = null;
-        FeedbackModel feedeback = new FeedbackModel().builder()
-                .text(feedback)
-                .sentiment(analysisResult.getSentimento())
-                .build();
-        FeedbackModel createFeedback = repository.save(feedeback);
-        FeaturesModel featuresModel = null;
-        if(analysisResult.isSugestao()) {
-            featuresModel = openAiService.saveFeatureFromAnalise(analysisResult.getFuncionalidade(), createFeedback.getId());
-        }
-        responseFeedeback = dto.buildFeedbackToResponseFeedback(createFeedback, featuresModel);
-        return responseFeedeback;
-    }
 
     public boolean delete(UUID id){
         boolean isDelet = false;
@@ -79,6 +54,5 @@ public class FeedbackService  {
             isDelet = true;
         }
         return isDelet;
-    } */
-
+    }
 }

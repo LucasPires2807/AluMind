@@ -18,35 +18,35 @@ public class FeedbackModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
-    String text;
-    String sentiment;
+    String feedback;
+    String sentimento;
     private LocalDateTime date_create;
-    String justify; //justificativa da classificação (positivo, negativo, neutro)
+    String justificativa;
 
     @Builder
-    public FeedbackModel(int id, String text, String sentiment, String justify) {
+    public FeedbackModel(int id, String feedback, String sentimento, String justificativa) {
         this.id = id;
-        this.text = text;
-        this.sentiment = Sentiment.convertToEnum(sentiment).toString();
+        this.feedback = feedback;
+        this.sentimento = Sentiment.convertToEnum(sentimento).toString();
         this.date_create = LocalDateTime.now();
-        this.justify = justify;
-    } public Document toDocument(@NonNull FeedbackModel feedbackModel) {
-        return new Document(feedbackModel.getText(),
-                Map.of("sentimentType", feedbackModel.sentiment,
-                        "justify", feedbackModel.justify,
+        this.justificativa = justificativa;
+    }
+
+    public Document toDocument(@NonNull FeedbackModel feedbackModel) {
+        return new Document(feedbackModel.getFeedback(),
+                Map.of("sentimento", feedbackModel.sentimento,
+                        "justificativa", feedbackModel.justificativa,
                         "id", feedbackModel.getId())
         );
     }
-
-
 
     @Override
     public String toString() {
         return "FeedbackModel{" +
                 "id=" + id +
-                ", text='" + text + '\'' +
-                ", sentiment='" + sentiment + '\'' +
-                ", justify='" + justify + '\'' +
+                ", feedback='" + feedback + '\'' +
+                ", sentimento='" + sentimento + '\'' +
+                ", justificativa='" + justificativa + '\'' +
                 '}';
     }
 

@@ -48,8 +48,6 @@ public class DataLoaderService {
                         .build());
 
         return pdfReader.get();
-        //log.info("Documentos Recuperados para [%s]:".formatted(pdfReader.get()));
-
     }
 
     public List<Document> getContentFromCsv(Resource resource){
@@ -65,12 +63,11 @@ public class DataLoaderService {
             for (CSVRecord csvRecord : csvParser) {
                 FeedbackModel feedbackModel = FeedbackModel.builder()
                         .id(Integer.parseInt(csvRecord.get("DOC_ID")))
-                        .text(csvRecord.get("TEXT"))
-                        .sentiment(csvRecord.get("SENTIMENT"))
-                        .justify(csvRecord.get("JUSTIFY"))
+                        .feedback(csvRecord.get("TEXT"))
+                        .sentimento(csvRecord.get("SENTIMENT"))
+                        .justificativa(csvRecord.get("JUSTIFY"))
                         .build();
                 documentsToAdd.add(feedbackModel.toDocument(feedbackModel));
-                //salvar analise
             }
             return documentsToAdd;
         } catch (IOException e) {

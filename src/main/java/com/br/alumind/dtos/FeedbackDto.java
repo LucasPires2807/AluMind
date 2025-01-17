@@ -1,11 +1,8 @@
 package com.br.alumind.dtos;
-import com.br.alumind.models.FeaturesModel;
 import com.br.alumind.models.FeedbackModel;
 import lombok.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.ArrayList;
-import java.util.Objects;
 import java.util.UUID;
 
 @Data
@@ -32,9 +29,9 @@ public class FeedbackDto {
 
    public ResponseFeedback buildFeedbackToResponseFeedback(FeedbackModel feedback){
        return new ResponseFeedback(feedback.getId(),
-               feedback.getSentiment(),
-               feedback.getText(),
-               feedback.getJustify());
+               feedback.getSentimento(),
+               feedback.getFeedback(),
+               feedback.getJustificativa());
     }
 }
 

@@ -35,7 +35,7 @@ public class DataLoadRunner implements ApplicationRunner {
 
         List<Document> documentsCSV = service.getContentFromCsv(resourceCsv);
         documentsCSV.forEach(doc -> log.info("Document: {}", doc));
-        documentRepository.addDocuments(documentsCSV);
+        //documentRepository.addDocuments(documentsCSV);
         log.info("done!");
 
         log.info("Adding documents to vector store from PDF");

@@ -14,17 +14,11 @@ import java.util.Objects;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/feedback")
 public class FeedbackController {
     @Autowired
     private FeedbackService service;
-    @Autowired
-    private OpenAiService openAiService;
-    private final FeedbackDto dto;
 
-    public FeedbackController() {
-        this.dto = new FeedbackDto();
-    }
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody FeedbackDto.RequestFeedback request){
@@ -37,26 +31,9 @@ public class FeedbackController {
         }
 
         return response;
-       //receber feedback e salvar avaliação dele como positivo ou negativo
     }
 
-    /**@PostMapping
-    public ResponseEntity<?> save(@RequestBody FeedbackDto.RequestFeedback request){
-        ResponseEntity response;
-        if(openAiService.avaiableSpamFeedback(request.feedback())) {
-            return new ResponseEntity<>("Erro ao tentar salvar Feedback. Spam detectado!", HttpStatus.BAD_REQUEST);
-        }
-        FeedbackDto.ResponseFeedback responseFeedback = service.save(request);
-        if(!Objects.isNull(responseFeedback)){
-            response = new ResponseEntity<>(responseFeedback, HttpStatus.OK);
-        }else{
-            response = new ResponseEntity<>("Erro ao tentar salvar Feedback", HttpStatus.BAD_REQUEST);
-        }
-
-        return response;
-    }
-
-    @GetMapping("feedback")
+    @GetMapping()
     public ResponseEntity<List<FeedbackDto.ResponseFeedback>> findAll(){
         List<FeedbackDto.ResponseFeedback> feedbacks = service.findAll();
         return new ResponseEntity<>(feedbacks, HttpStatus.OK);
@@ -84,5 +61,5 @@ public class FeedbackController {
             response = new ResponseEntity<>("Erro ao tentar deletar Feedback", HttpStatus.BAD_REQUEST);
         }
         return response;
-    } */
+    }
 }
