@@ -1,0 +1,97 @@
+Text,Sentiment,Source,DOC_ID
+Adorei este produto!,positivo, Twitter,1
+O serviço foi terrível.,negativo, Críticas do Yelp,2
+Este filme é incrível!,positivo, IMDb,3
+Estou muito decepcionado com o suporte ao cliente.,negativo, Fórum on-line,4
+Acabei de fazer a melhor refeição da minha vida!,positivo, TripAdvisor,5
+A qualidade deste produto é abaixo da média.,negativo, Críticas da Amazon,6
+Não consigo parar de ouvir esta música. É incrível!,positivo, Spotify,7
+O site deles é muito fácil de usar. Adorei!,positivo, Depoimento do site,8
+Adorei o filme! Foi fantástico!,positivo, IMDb,9
+O atendimento ao cliente foi terrível.,negativo, Críticas do Yelp,10
+Este livro me fez sentir inspirado. Altamente recomendado!,positivo, Goodreads,11
+Estou extremamente decepcionado com a qualidade do produto.,negativo, Loja on-line,12
+Acabei de ter as férias mais incríveis! Mal posso esperar para voltar.,positivo, TripAdvisor,13
+A comida neste restaurante era horrível. Nunca mais vou voltar!,negativo, Zomato,14
+Não consigo parar de ouvir esta música. É a minha nova favorita!,positivo, Spotify,15
+O site deles é tão confuso e mal projetado.,negativo, Crítica do site,16
+Tive uma experiência incrível no parque temático. Muito divertido!,positivo, Relatório de viagem,17
+O produto chegou danificado. Muito decepcionado.,negativo, Loja online,18
+O show foi absolutamente de tirar o fôlego. Melhor apresentação de todos os tempos!,positivo, Crítica do evento,19
+Tive uma experiência terrível com o suporte ao cliente.,negativo, Bate-papo online,20
+Este filme é uma obra-prima! Fiquei impressionado.,positivo, IMDb,21
+O atendimento ao cliente nesta loja é de primeira.,positivo, Críticas do Yelp,22
+Estou decepcionado com o final deste livro. Ele não deu certo.,negativo, Goodreads,23
+O produto que recebi estava danificado. Inaceitável.,negativo, Loja online,24
+Acabei de ter a pior experiência de voo. Funcionários atrasados ​​e rudes.,negativo, Avaliação da companhia aérea,25
+A estadia no hotel foi absolutamente incrível! Luxo no seu melhor.,positivo, TripAdvisor,26
+A comida neste restaurante era excelente. Altamente recomendado!,positivo, Zomato,27
+Esta playlist é minha favorita para exercícios. Energizante e motivadora!,positivo, Spotify,28
+Tive uma experiência frustrante navegando pelo site deles.,negativo, Avaliação do site,29
+A viagem na montanha-russa foi emocionante! Emoção de tirar o fôlego!,positivo, Avaliação do parque temático,30
+O produto que encomendei nunca chegou. Serviço terrível.,negativo, Loja online,31
+Não me canso desta banda. A música deles é incrível!,positivo, Avaliação musical,32
+Tive uma ótima conversa com o suporte ao cliente. Útil e amigável.,positivo, Bate-papo online,33
+Este restaurante tem a comida mais deliciosa. Mal posso esperar para voltar!,positivo, TripAdvisor,34
+O produto que comprei quebrou em uma semana. Má qualidade.,negativo, Loja online,35
+Este livro é instigante e lindamente escrito. Altamente recomendado!,positivo, Goodreads,36
+O atendimento ao cliente desta loja é excepcional. Eles foram além do esperado.,positivo, Loja de varejo,37
+Tive uma experiência terrível com o suporte técnico. Nenhuma resolução.,negativo, Central de ajuda online,38
+O show ao vivo foi eletrizante! A energia da banda era contagiante.,positivo, Crítica do evento,39
+Estou decepcionado com a comida deste restaurante. Não tinha gosto.,negativo, Zomato,40
+Esta música sempre me deixa de bom humor. É minha faixa favorita para me sentir bem!,positivo, Spotify,41
+O site é lento e não responde. Difícil de navegar.,negativo, Crítica do site,42
+A montanha-russa foi emocionante! Pura adrenalina!,positivo, Crítica de parque temático,43
+O produto que encomendei chegou danificado. Muito decepcionado com a embalagem.,negativo, Loja online,44
+Estou cativado pelo som único desta banda. Eles são uma lufada de ar fresco!,positivo, Crítica musical,45
+O suporte ao cliente respondeu rapidamente e resolveu meu problema. Impressionado!,positivo, Chat online,46
+Este restaurante tem a melhor comida. Recomendo muito!,positivo, Críticas do Yelp,47
+O enredo deste filme é confuso e difícil de acompanhar.,negativo, IMDb,48
+Sou viciado neste jogo. É muito divertido!,positivo, Fórum de jogos,49
+O atendimento ao cliente neste hotel foi terrível. Evite a todo custo.,negativo, Site de viagens,50
+Este livro me entediou até as lágrimas. Não consegui terminá-lo.,negativo, Goodreads,51
+Estou impressionado com a qualidade do som destes fones de ouvido. Excelente!,positivo, Loja Online,52
+O design do site é elegante e fácil de usar. Fácil de navegar.,positivo, Depoimento do Site,53
+Tive uma experiência terrível com o serviço de entrega. Atrasado e pouco profissional.,negativo, Loja Online,54
+O show foi alucinante! A banda sabe como fazer um show.,positivo, Crítica do Evento,55
+Estou extremamente decepcionado com o suporte ao cliente. Nenhuma resolução.,negativo, Chat Online,56
+A equipe do hotel foi rude e pouco profissional. Atendimento ao cliente terrível.,negativo, Crítica do Hotel,57
+A comida neste restaurante era medíocre. Nada de especial.,negativo, Zomato,58
+Essa música sempre me deixa em um clima nostálgico. Ela me lembra dos bons tempos.,positivo, Spotify,59
+A velocidade de carregamento do site é frustrantemente lenta. Precisa melhorar.,negativo, Crítica do site,60
+A comida neste café superou minhas expectativas. Absolutamente deliciosa!,positivo, Blog de culinária,61
+Estou decepcionado com o final deste programa de TV. Deixou muitas perguntas sem resposta.,negativo, Crítica do programa de TV,62
+Este álbum é uma obra-prima. Cada música é uma obra de arte!,positivo, Crítica musical,63
+O layout do site é desorganizado e confuso. É difícil encontrar informações.,negativo, Crítica do site,64
+A montanha-russa neste parque temático é uma experiência emocionante. Imperdível!,positivo, Crítica do parque temático,65
+O produto que encomendei nunca chegou. Atendimento ao cliente ruim.,negativo, Loja online,66
+Estou impressionado com o talento deste artista. Suas pinturas são de tirar o fôlego!,positivo, Crítica de arte,67
+A comida neste restaurante foi decepcionante. Não vale o preço.,negativo, Zomato,68
+Esta playlist é perfeita para relaxar. Calmante e relaxante!,positivo, Spotify,69
+A navegação no site é suave e intuitiva. Encontrei o que precisava rapidamente.,positivo, Depoimento do site,70
+A viagem neste navio de cruzeiro foi uma experiência inesquecível. Adorei cada momento!,positivo, Blog de viagens,71
+O produto que recebi era de baixa qualidade. Quebrou depois de alguns usos.,negativo, Loja online,72
+Este livro me manteve fisgado do início ao fim. Uma leitura cativante!,positivo, Goodreads,73
+O atendimento ao cliente nesta loja é excelente. Eles realmente se importam com seus clientes.,positivo, Loja de varejo,74
+Tive uma experiência frustrante com o suporte técnico. Nenhuma resolução fornecida.,negativo, Central de ajuda online,75
+A equipe do hotel foi rude e pouco profissional. Atendimento ao cliente terrível.,negativo, Avaliação do hotel,76
+A comida neste restaurante era medíocre. Nada de especial.,negativo, Zomato,77
+Essa música sempre me deixa em um clima nostálgico. Ela me lembra dos bons tempos.,positivo, Spotify,78
+A velocidade de carregamento do site é frustrantemente lenta. Precisa melhorar.,negativo, Avaliação do site,79
+Eu amo este produto!,positivo, Twitter,80
+O serviço foi terrível.,negativo, Avaliações do Yelp,81
+Este filme é incrível!,positivo, IMDb,82
+Estou muito decepcionado com o suporte ao cliente.,negativo, Fórum online,83
+Acabei de fazer a melhor refeição da minha vida!,positivo, TripAdvisor,84
+A qualidade deste produto é abaixo da média.,negativo, Avaliações da Amazon,85
+Não consigo parar de ouvir esta música. É incrível!,positivo, Spotify,86
+O site deles é tão fácil de usar. Adorei!,positivo, Depoimento do site,87
+Adorei o filme! Foi fantástico!,positivo, IMDb,88
+O atendimento ao cliente foi terrível.,negativo, Yelp Reviews,89
+Este livro me fez sentir inspirado. Altamente recomendado!,positivo, Goodreads,90
+Estou extremamente decepcionado com a qualidade do produto.,negativo, Loja online,91
+Acabei de ter as férias mais incríveis! Mal posso esperar para voltar.,positivo, TripAdvisor,92
+A comida neste restaurante era horrível. Nunca mais vou voltar!,negativo, Zomato,93
+Não consigo parar de ouvir esta música. É a minha nova favorita!,positivo, Spotify,94
+O site deles é tão confuso e mal projetado.,negativo, Website Review,95
+Tive uma experiência incrível no parque temático. Muito divertido!,positivo, Trip Report,96

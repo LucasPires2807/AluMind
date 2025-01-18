@@ -8,6 +8,8 @@ public class Parser {
     public static FeedbackModel parseFeedback(String response) {
         // Pré-processamento: Limpar texto de caracteres indesejados
         response = cleanResponse(response);
+        System.out.println("Parsing feedback: " + response);
+
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             FeedbackModel feedbackModel = objectMapper.readValue(response, FeedbackModel.class);
@@ -17,7 +19,8 @@ public class Parser {
                         .justificativa(feedbackModel.getJustificativa())
                         .build();
         } catch (JsonProcessingException e) {
-            throw new IllegalArgumentException("Não foi possível extrair todos os campos da resposta.");
+            System.err.println("Não foi possível extrair todos os campos da resposta : " + e.getMessage());
+            return null;
         }
 
     }
@@ -25,13 +28,14 @@ public class Parser {
     private static String cleanResponse(String response) {
         // Remove quebras de linha e espaços extras
         response = response.replaceAll("\\s+", " ").trim();
+        response = response.replaceAll("`", " ").trim();
+
         if (!response.startsWith("{")) {
             response = "{" + response;
         }
         if (!response.endsWith("}")) {
             response = response + "}";
         }
-        System.out.println("Parsing feedback: " + response);
         return response.toLowerCase();
     }
 }

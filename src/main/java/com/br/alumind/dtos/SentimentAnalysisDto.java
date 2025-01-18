@@ -16,7 +16,7 @@ import lombok.ToString;
 @ToString
 @Builder
 public class SentimentAnalysisDto {
-    private UUID id;
+    private int id;
     @NotNull
     private String text;
     @NotNull
@@ -24,7 +24,7 @@ public class SentimentAnalysisDto {
     @NotNull
     private boolean predictedCorrectly;
 
-    public SentimentAnalysisDto(UUID id, String text, String sentiment, boolean predictedCorrectly) {
+    public SentimentAnalysisDto(int id, String text, String sentiment, boolean predictedCorrectly) {
         this.id = id;
         this.text = text;
         this.sentiment = sentiment;
