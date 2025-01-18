@@ -49,7 +49,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
 
           scp -o StrictHostKeyChecking=no \
-            docker-compose.yml target/*.jar \
+            ../../docker-compose.yml ../../target/*.jar \
             ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/apps/spring-boot-app/
 
       - name: Deploy to Remote Server
