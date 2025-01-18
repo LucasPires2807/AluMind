@@ -1,6 +1,7 @@
 package com.br.alumind.services;
 
 import com.br.alumind.models.FeedbackModel;
+import com.br.alumind.repositories.FeedbackRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.ai.reader.ExtractedTextFormatter;
 import org.springframework.ai.reader.pdf.PagePdfDocumentReader;
 import org.springframework.ai.reader.pdf.config.PdfDocumentReaderConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ai.document.Document;
 
@@ -20,13 +22,13 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 //serviço para carregar os dados de arquivos pdf e ou csv
 public class DataLoaderService {
+    @Autowired
+    private FeedbackRepository feedbackRepository;
 
 
     private static final Logger log = LoggerFactory.getLogger(DataLoaderService.class);
@@ -48,8 +50,6 @@ public class DataLoaderService {
                         .build());
 
         return pdfReader.get();
-        //log.info("Documentos Recuperados para [%s]:".formatted(pdfReader.get()));
-
     }
 
     public List<Document> getContentFromCsv(Resource resource){
@@ -62,13 +62,18 @@ public class DataLoaderService {
                 .setIgnoreHeaderCase(true)
                 .build())) {
             List<Document> documentsToAdd = new ArrayList<>();
+            System.out.println();
+            System.out.println(csvParser);
             for (CSVRecord csvRecord : csvParser) {
-                FeedbackModel paragraph = FeedbackModel.builder()
+                FeedbackModel feedbackModel = FeedbackModel.builder()
                         .id(Integer.parseInt(csvRecord.get("DOC_ID")))
-                        .text(csvRecord.get("passage"))
-                        .sentiment("")
+                        .feedback(csvRecord.get("TEXT"))
+                        .sentimento(csvRecord.get("SENTIMENT"))
+                        .justificativa("")
+                        //.justificativa(csvRecord.get("JUSTIFY"))
                         .build();
-                documentsToAdd.add(paragraph.toDocument(paragraph));
+                feedbackRepository.save(feedbackModel);
+                documentsToAdd.add(feedbackModel.toDocument(feedbackModel));
             }
             return documentsToAdd;
         } catch (IOException e) {
