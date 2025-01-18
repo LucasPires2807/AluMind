@@ -9,14 +9,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class EmbeddingConfig {
-
-   /* @Bean
-    VectorStore vectorStore(EmbeddingModel embeddingModel) {
-        // It's like you using H2 database for your application when making some demo
-        // VectorStore is also the same case
-        return new SimpleVectorStore(embeddingModel);
-    } */
-
     @Bean
     public EmbeddingModel embeddingModel(OllamaApi ollamaClient) {
         OllamaOptions ollamaOptions = new OllamaOptions();

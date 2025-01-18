@@ -1,11 +1,8 @@
 package com.br.alumind.dtos;
-import com.br.alumind.models.FeaturesModel;
 import com.br.alumind.models.FeedbackModel;
 import lombok.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.ArrayList;
-import java.util.Objects;
 import java.util.UUID;
 
 @Data
@@ -27,15 +24,14 @@ public class FeedbackDto {
     }
 
     public record RequestFeedback(String feedback){}
-    public record ResponseFeedback(UUID id, String sentiment, ArrayList<ResponseFeature> requested_features){}
+    public record ResponseFeedback(int id, String sentiment, String feedback, String justify){}
     public record ResponseFeature(String code, String reason){}
 
-   /* public ResponseFeedback buildFeedbackToResponseFeedback(FeedbackModel feedback, FeaturesModel featuresModel){
-        ArrayList<ResponseFeature> arrayList = new ArrayList();
-        if(!Objects.isNull(featuresModel)){
-            arrayList.add(new ResponseFeature(featuresModel.getId().toString(), featuresModel.getReason()));
-        }
-        return new ResponseFeedback(feedback.getId(), feedback.getSentiment(), arrayList);
-    } */
+   public ResponseFeedback buildFeedbackToResponseFeedback(FeedbackModel feedback){
+       return new ResponseFeedback(feedback.getId(),
+               feedback.getSentimento(),
+               feedback.getFeedback(),
+               feedback.getJustificativa());
+    }
 }
 

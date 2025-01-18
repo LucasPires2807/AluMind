@@ -1,6 +1,7 @@
 package com.br.alumind.mappers;
 
 import com.br.alumind.dtos.SentimentAnalysisDto;
+import com.br.alumind.models.FeedbackModel;
 import com.br.alumind.models.SentimentAnalysisModel;
 import org.springframework.stereotype.Component;
 
@@ -8,21 +9,20 @@ import org.springframework.stereotype.Component;
 public class SentimentAnalysisMapper {
 
     // Convert Model to DTO
-    public SentimentAnalysisDto toDTO(SentimentAnalysisModel model) {
+    public SentimentAnalysisDto toDTO(SentimentAnalysisModel model, FeedbackModel feedbackModel) {
         return SentimentAnalysisDto.builder()
                 .id(model.getId())
-                .text(model.getText())
-                .sentiment(model.getSentiment())
+                .text(feedbackModel.getFeedback())
+                .sentiment(feedbackModel.getSentimento())
                 .predictedCorrectly(model.isPredictedCorrectly())
                 .build();
     }
 
     // Convert DTO to Model
-    public SentimentAnalysisModel toModel(SentimentAnalysisDto dto) {
+    public SentimentAnalysisModel toModel(SentimentAnalysisDto dto, FeedbackModel feedbackModel) {
         return SentimentAnalysisModel.builder()
                 .id(dto.getId())
-                .text(dto.getText())
-                .sentiment(dto.getSentiment())
+                .id_feedback(feedbackModel.getId())
                 .predictedCorrectly(dto.isPredictedCorrectly())
                 .build();
     }
