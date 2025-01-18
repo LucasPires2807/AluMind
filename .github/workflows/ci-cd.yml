@@ -1,0 +1,68 @@
+name: Build and Deploy with Docker Compose
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Run Code Quality Check
+        run: mvn checkstyle:check
+        continue-on-error: true
+
+      - name: Build the project
+        run: mvn clean package -DskipTests=true
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: spring-boot-app
+          path: |
+            target/*.jar
+            docker-compose.yml
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: spring-boot-app
+
+      - name: Upload Files to Server
+        env:
+          PRIVATE_KEY: ${{ secrets.REMOTE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+          scp -o StrictHostKeyChecking=no \
+            docker-compose.yml target/*.jar \
+            ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/apps/spring-boot-app/
+
+      - name: Deploy to Remote Server
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.REMOTE_KEY }}
+          port: 22
+          script: |
+            # Navegar até o diretório da aplicação
+            cd ~/apps/spring-boot-app
+
+            # Atualizar e reiniciar os containers com docker-compose
+            docker-compose down
+            docker-compose up -d --build
