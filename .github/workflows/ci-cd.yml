@@ -48,6 +48,8 @@ jobs:
           echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
+          ls -la
+
           scp -o StrictHostKeyChecking=no \
             ../../docker-compose.yml ../../target/*.jar \
             ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/apps/spring-boot-app/
