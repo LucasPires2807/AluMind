@@ -53,7 +53,7 @@ jobs:
           ls -la
 
           scp -o StrictHostKeyChecking=no \
-            artifact/docker-compose.yml artifact/target/*.jar \
+            artifact/docker-compose.yaml artifact/target/*.jar \
             ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/apps/spring-boot-app/
 
 
