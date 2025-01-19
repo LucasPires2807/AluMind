@@ -28,7 +28,7 @@ jobs:
           name: spring-boot-app
           path: |
             target/*.jar
-            docker-compose.yml
+            docker-compose.yaml
 
   deploy:
     needs: build
@@ -39,8 +39,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: spring-boot-app
-          path: ./artifact
-
 
       - name: Upload Files to Server
         env:
@@ -50,12 +48,9 @@ jobs:
           echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
-          ls -la
-
           scp -o StrictHostKeyChecking=no \
-            artifact/docker-compose.yaml artifact/target/*.jar \
+            docker-compose.yaml target/*.jar \
             ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/apps/spring-boot-app/
-
 
       - name: Deploy to Remote Server
         uses: appleboy/ssh-action@v0.1.8
