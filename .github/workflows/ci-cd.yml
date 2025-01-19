@@ -29,6 +29,7 @@ jobs:
           path: |
             target/*.jar
             docker-compose.yaml
+            Dockerfile
 
   deploy:
     needs: build
@@ -53,7 +54,7 @@ jobs:
             "mkdir -p ~/apps/spring-boot-app/"
 
           scp -o StrictHostKeyChecking=no \
-            docker-compose.yaml target/*.jar \
+            docker-compose.yaml target/*.jar Dockerfile \
             ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/apps/spring-boot-app/
 
       - name: Deploy to Remote Server
