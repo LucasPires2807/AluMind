@@ -41,7 +41,7 @@ public class PromptService {
 
     public Prompt generatePromptFromPromptRequestAndRag(String clientPrompt) {
         log.info("Generating prompt for client prompt: {}", clientPrompt);
-        List<Document> docs = documentRepository.similaritySearchWithTopK(clientPrompt, 5);
+        List<Document> docs = documentRepository.similaritySearchWithTopK(clientPrompt, 3);
         Message systemMessage = getMessageFromRagTemplate(docs, clientPrompt);
         UserMessage userMessage = new UserMessage(clientPrompt);
         return new Prompt(List.of(systemMessage, userMessage));
@@ -51,7 +51,7 @@ public class PromptService {
         SystemPromptTemplate systemPromptTemplate = new SystemPromptTemplate(ragPromptTemplate);
         Map<String, Object> mapper = new HashMap<>();
         // Adiciona os exemplos ao template
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < similarDocuments.size(); i++) {
             Document document = similarDocuments.get(i);
             Map<String, Object> metadata = document.getMetadata(); // Obtém os metadados do documento
             // Preenche os exemplos no mapper com os dados
