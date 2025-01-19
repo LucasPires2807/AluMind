@@ -48,7 +48,6 @@ jobs:
           echo "$PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
 
-          # Copying from local to remote
           scp -o StrictHostKeyChecking=no \
             docker-compose.yaml target/*.jar \
             ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/apps/spring-boot-app/
