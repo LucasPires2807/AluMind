@@ -39,6 +39,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: spring-boot-app
+          path: ./artifact
+
 
       - name: Upload Files to Server
         env:
@@ -51,8 +53,9 @@ jobs:
           ls -la
 
           scp -o StrictHostKeyChecking=no \
-            ../../docker-compose.yaml ../../target/*.jar \
+            artifact/docker-compose.yml artifact/target/*.jar \
             ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/apps/spring-boot-app/
+
 
       - name: Deploy to Remote Server
         uses: appleboy/ssh-action@v0.1.8
