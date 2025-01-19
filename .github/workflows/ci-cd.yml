@@ -28,7 +28,7 @@ jobs:
           name: spring-boot-app
           path: |
             target/*.jar
-            docker-compose.yml
+            docker-compose.yaml
 
   deploy:
     needs: build
