@@ -51,11 +51,16 @@ jobs:
 
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa \
             ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} \
-            "mkdir -p ~/apps/spring-boot-app/"
+            "mkdir -p ~/apps/spring-boot-app/target"
 
           scp -o StrictHostKeyChecking=no \
             docker-compose.yaml target/*.jar Dockerfile \
             ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/apps/spring-boot-app/
+
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa \
+            ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} \
+            "mkdir -p ~/apps/spring-boot-app/target
+             mv ~/apps/spring-boot-app/*.jar ~/apps/spring-boot-app/target" 
 
       - name: Deploy to Remote Server
         uses: appleboy/ssh-action@v0.1.8
