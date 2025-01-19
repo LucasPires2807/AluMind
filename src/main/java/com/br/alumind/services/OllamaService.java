@@ -44,7 +44,7 @@ public class OllamaService {
                 .prompt(prompt)
                 .call()
                 .content();
-        System.out.println("resposta " + response);
+       // System.out.println("resposta " + response);
         FeedbackModel feedbackModelParse = parseFeedback(response);
         if(Objects.isNull(feedbackModelParse)) return null;
         feedbackModelParse.setId(feedbackModel.getId());

@@ -15,6 +15,15 @@ Feedback do Usuário:
 "{feedback}"
 
 Exemplos de Análises Anteriores:
+
 Feedback: "{feedback_1}"
 Sentimento: "{sentimento_1}"
 Justificativa: "{justificativa_1}"
+
+Feedback: "{feedback_2}"
+Sentimento: "{sentimento_2}"
+Justificativa: "{justificativa_2}"
+
+Feedback: "{feedback_3}"
+Sentimento: "{sentimento_3}"
+Justificativa: "{justificativa_3}"

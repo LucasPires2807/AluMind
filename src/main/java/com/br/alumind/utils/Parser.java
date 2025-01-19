@@ -8,7 +8,7 @@ public class Parser {
     public static FeedbackModel parseFeedback(String response) {
         // Pré-processamento: Limpar texto de caracteres indesejados
         response = cleanResponse(response);
-        System.out.println("Parsing feedback: " + response);
+        //System.out.println("Parsing feedback: " + response);
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
