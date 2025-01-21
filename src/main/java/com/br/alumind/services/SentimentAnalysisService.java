@@ -26,7 +26,7 @@ public class SentimentAnalysisService {
 
     public SentimentAnalysisDto saveAnalysis(FeedbackModel feedbackModel) {
 
-        FeedbackModel model = service.runClassifyTest(feedbackModel);
+        FeedbackModel model = service.runClassifyAnalysis(feedbackModel);
         if (Objects.isNull(model)) return null;
         boolean isCorrect = false;
 

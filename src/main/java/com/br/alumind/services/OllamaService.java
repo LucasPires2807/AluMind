@@ -37,7 +37,7 @@ public class OllamaService {
         this.dto = new FeedbackDto();
     }
 
-    public FeedbackModel runClassifyTest(FeedbackModel feedbackModel) {
+    public FeedbackModel runClassifyAnalysis(FeedbackModel feedbackModel) {
         var chatClient = chatClientBuilder.build();
         Prompt prompt = promptService.generatePromptFromPromptRequest(feedbackModel.getFeedback());
         String response = chatClient
@@ -52,6 +52,25 @@ public class OllamaService {
         repository.addDocuments(documents);
         return feedbackModelParse;
     }
+
+    public String runClassifyTest(String feedback) {
+        var chatClient = chatClientBuilder.build();
+        //Prompt prompt = promptService.generatePromptFromPromptRequest(feedbackModel.getFeedback());
+        String response = chatClient
+                .prompt(feedback)
+                .call()
+                .content();
+        // System.out.println("resposta " + response);
+        //FeedbackModel feedbackModelParse = parseFeedback(response);
+        //if(Objects.isNull(feedbackModelParse)) return null;
+        // feedbackModelParse.setId(feedbackModel.getId());
+        // List<Document> documents = Collections.singletonList(feedbackModel.toDocument(feedbackModelParse));
+        //repository.addDocuments(documents);
+        return response;
+    }
+
+
+
 
     public FeedbackDto.ResponseFeedback runClassify(String userPrompt) {
         var chatClient = chatClientBuilder.build();

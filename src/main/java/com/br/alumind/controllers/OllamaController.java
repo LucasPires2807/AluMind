@@ -29,4 +29,9 @@ public class OllamaController {
             throw new RuntimeException(e);
         }
     }
+
+    @PostMapping("generateTest")
+    public Map generateTest(@RequestParam(value = "message") String message) {
+        return Map.of("ollama", chatService.runClassifyTest(message));
+    }
 }
